@@ -665,7 +665,7 @@ def InstallBoost_Helper(context, force, buildArgs):
 
     with CurrentWorkingDirectory(DownloadURL(BOOST_URL, context, force, 
                                              dontExtract=dontExtract)):
-        bootstrap = "bootstrap.bat" if Windows() else "./bootstrap.sh"
+        bootstrap = "bootstrap.bat vc14" if Windows() else "./bootstrap.sh"
         Run('{bootstrap} --prefix="{instDir}"'
             .format(bootstrap=bootstrap, instDir=context.instDir))
 
@@ -684,6 +684,8 @@ def InstallBoost_Helper(context, force, buildArgs):
                 .format(variant="debug" if context.buildDebug else "release"),
             '--with-atomic',
             '--with-program_options',
+            'cflags="-fPIC -std=c++14 -D_GLIBCXX_USE_CXX11_ABI=0"',
+            'cxxflags="-fPIC -std=c++14 -D_GLIBCXX_USE_CXX11_ABI=0"',
             '--with-regex'
         ]
 
