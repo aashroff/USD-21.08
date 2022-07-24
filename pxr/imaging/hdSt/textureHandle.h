@@ -66,7 +66,6 @@ public:
         HdStTextureObjectSharedPtr const &textureObject,
         const HdSamplerParameters &samplerParams,
         size_t memoryRequest,
-        bool createBindlessHandle,
         HdStShaderCodePtr const & shaderCode,
         HdSt_TextureHandleRegistry *textureHandleRegistry);
 
@@ -118,7 +117,6 @@ private:
     HdStSamplerObjectSharedPtr _samplerObject;
     HdSamplerParameters _samplerParams;
     size_t _memoryRequest;
-    bool _createBindlessHandle;
     HdStShaderCodePtr _shaderCode;
     HdSt_TextureHandleRegistry *_textureHandleRegistry;
 };

@@ -63,14 +63,13 @@ public:
 
     /// Create new sampler object matching the given texture object.
     ///
-    /// If createBindlessHandle, also creates a texture sampler handle
-    /// (for bindless textures). The associated GPU resource is
-    /// created immediately and the call is not thread-safe.
+    /// The associated GPU resource is created immediately and
+    /// the call is not thread-safe.
     HDST_API 
     HdStSamplerObjectSharedPtr AllocateSampler(
         HdStTextureObjectSharedPtr const &texture,
-        HdSamplerParameters const &samplerParameters,
-        bool createBindlessHandle);
+        HdSamplerParameters const &samplerParameters);
+
 
     /// Delete samplers no longer used by a client.
     HDST_API 

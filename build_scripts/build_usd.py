@@ -684,8 +684,6 @@ def InstallBoost_Helper(context, force, buildArgs):
                 .format(variant="debug" if context.buildDebug else "release"),
             '--with-atomic',
             '--with-program_options',
-            'cflags="-fPIC -std=c++14 -D_GLIBCXX_USE_CXX11_ABI=0"',
-            'cxxflags="-fPIC -std=c++14 -D_GLIBCXX_USE_CXX11_ABI=0"',
             '--with-regex'
         ]
 
@@ -1150,6 +1148,7 @@ def InstallOpenSubdiv(context, force, buildArgs):
         # unwanted effect of replacing the system allocator with
         # tbbmalloc.
         extraArgs.append('-DNO_TBB=ON')
+    
 
         # Add on any user-specified extra arguments.
         extraArgs += buildArgs

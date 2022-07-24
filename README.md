@@ -1,176 +1,72 @@
-Universal Scene Description
-===========================
+# MaterialX
 
-Universal Scene Description (USD) is an efficient, scalable system for
-authoring, reading, and streaming time-sampled scene description for
-interchange between graphics applications.
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/materialx/MaterialX/blob/main/LICENSE.txt)
+[![Version](https://img.shields.io/github/v/release/materialx/MaterialX)](https://github.com/materialx/MaterialX/releases/latest)
+[![Build Status](https://github.com/MaterialX/MaterialX/workflows/main/badge.svg?branch=main)](https://github.com/MaterialX/MaterialX/actions?query=branch%3Amain)
 
-For more details, please visit the web site [here](http://openusd.org).
+MaterialX is an open standard for transfer of rich material and look-development content between applications and renderers.  Originated at Lucasfilm in 2012, MaterialX has been used by Industrial Light & Magic (ILM) in feature films such as _Star Wars: The Force Awakens_ and real-time experiences such as _Trials on Tatooine_, and it remains the central material format for new ILM productions.
 
-Build Status
-------------
+### Quick Start for Developers
 
-|         |   Linux   |  Windows  |   macOS   |
-|:-------:|:---------:|:---------:|:---------:|
-|   dev   | [![Build Status](https://dev.azure.com/PixarAnimationStudios/USD/_apis/build/status/PixarAnimationStudios.USD?branchName=dev&amp;jobName=Linux)](https://dev.azure.com/PixarAnimationStudios/USD/_build/latest?definitionId=2&branchName=dev) | [![Build Status](https://dev.azure.com/PixarAnimationStudios/USD/_apis/build/status/PixarAnimationStudios.USD?branchName=dev&amp;jobName=Windows)](https://dev.azure.com/PixarAnimationStudios/USD/_build/latest?definitionId=2&branchName=dev) | [![Build Status](https://dev.azure.com/PixarAnimationStudios/USD/_apis/build/status/PixarAnimationStudios.USD?branchName=dev&amp;jobName=macOS)](https://dev.azure.com/PixarAnimationStudios/USD/_build/latest?definitionId=2&branchName=dev) |
-|  release | [![Build Status](https://dev.azure.com/PixarAnimationStudios/USD/_apis/build/status/PixarAnimationStudios.USD?branchName=release&amp;jobName=Linux)](https://dev.azure.com/PixarAnimationStudios/USD/_build/latest?definitionId=2&branchName=release) | [![Build Status](https://dev.azure.com/PixarAnimationStudios/USD/_apis/build/status/PixarAnimationStudios.USD?branchName=release&amp;jobName=Windows)](https://dev.azure.com/PixarAnimationStudios/USD/_build/latest?definitionId=2&branchName=release) | [![Build Status](https://dev.azure.com/PixarAnimationStudios/USD/_apis/build/status/PixarAnimationStudios.USD?branchName=release&amp;jobName=macOS)](https://dev.azure.com/PixarAnimationStudios/USD/_build/latest?definitionId=2&branchName=release) |
+- Download the latest version of the [CMake](https://cmake.org/) build system.
+- Point CMake to the root of the MaterialX library and generate C++ projects for your platform and compiler.
+- Select the `MATERIALX_BUILD_PYTHON` option to build Python bindings.
+- Select the `MATERIALX_BUILD_VIEWER` option to build the MaterialX viewer.
 
-Additional Documentation
-------------------------
+### Supported Platforms
 
-* [User Documentation and Tutorials](http://openusd.org/docs/index.html)
-* [API Documentation](http://openusd.org/docs/api/index.html)
-* [Advanced Build Configuration](BUILDING.md)
+The MaterialX codebase requires a compiler with support for C++11, and can be built with any of the following:
 
-Getting Help
-------------
+- Microsoft Visual Studio 2015 or newer
+- GCC 4.8 or newer
+- Clang 3.3 or newer
 
-Need help understanding certain concepts in USD? See
-[Getting Help with USD](http://openusd.org/docs/Getting-Help-with-USD.html) or
-visit our [forum](https://groups.google.com/forum/#!forum/usd-interest).
+The Python bindings for MaterialX are based on [PyBind11](https://github.com/pybind/pybind11), and support Python versions 2.7 and 3.x.
 
-If you are experiencing undocumented problems with the software, please 
-[file a bug](https://github.com/PixarAnimationStudios/USD/issues/new).
+### Repository
 
-Supported Platforms
--------------------
+The MaterialX repository consists of the following folders:
 
-USD is currently supported on Linux platforms and has been built and tested
-on CentOS 7 and RHEL 7.
+- [documents](documents) - MaterialX documentation, including the specification and developer guide.
+- [libraries](libraries) - The standard data libraries for MaterialX, including definitions for the pattern and shading nodes.
+- [python](python) - Support modules and example scripts for MaterialX Python.
+- [resources](resources) - Resources for rendering MaterialX content, including example materials, images, and geometry.
+- [source](source) - Cross-platform C++ libraries for MaterialX with Python bindings.
 
-We are actively working on porting USD to both Windows and Mac platforms (Please 
-see [VERSIONS.md](VERSIONS.md) for explicitly tested versions). Support for both
-platforms should be considered experimental at this time. Currently, the tree 
-will build on Mac and Windows, but only limited testing has been done on these 
-platforms.
+### MaterialX Viewer
 
-Dependencies
-------------
+The [MaterialX Viewer](documents/DeveloperGuide/Viewer.md) leverages shader generation to build GLSL shaders from MaterialX graphs, rendering the results using the NanoGUI framework.
 
-The following dependencies are required:
- - C++ compiler
- - C compiler
- - [CMake](https://cmake.org/documentation/)
- - [Boost](https://boost.org)
- - [Intel TBB](https://www.threadingbuildingblocks.org/)
+**Figure 1:** Procedural and uniform materials in the MaterialX viewer
+<p float="left">
+  <img src="/documents/Images/MaterialXView_Marble.png" width="206" />
+  <img src="/documents/Images/MaterialXView_Copper.png" width="206" /> 
+  <img src="/documents/Images/MaterialXView_Plastic.png" width="206" /> 
+  <img src="/documents/Images/MaterialXView_Carpaint.png" width="206" /> 
+</p>
 
-The following dependencies are optional:
- - [Python](https://python.org)
+**Figure 2:** Textured, color-space-managed materials in the MaterialX viewer
+<p float="left">
+  <img src="/documents/Images/MaterialXView_TiledBrass.png" width="416" />
+  <img src="/documents/Images/MaterialXView_TiledWood.png" width="416" /> 
+</p>
 
-See [3rd Party Library and Application Versions](VERSIONS.md) for version information.
+**Figure 3:** Droid character materials in the MaterialX viewer. © & TM Lucasfilm Ltd. Used with permission.
+<p float="left">
+  <img src="/documents/Images/MaterialXView_BB8.png" width="416" />
+  <img src="/documents/Images/MaterialXView_R2D2.png" width="416" /> 
+</p>
 
-Additional dependencies are required for the following components. These 
-components may be disabled at build-time, for further details see
-[Advanced Build Configuration](BUILDING.md).
+### Pre-Built Binaries
 
-**Imaging and USD Imaging**
+The following packages contain pre-built binaries for the latest release, including the MaterialX viewer, Python libraries, and example assets:
 
-The following dependencies are required:
- - [OpenSubdiv](https://github.com/PixarAnimationStudios/OpenSubdiv)
+- [Microsoft Windows (Visual Studio 2017, Python 3.7)](https://github.com/materialx/MaterialX/releases/latest/download/MaterialX_Windows_VS2017_x64_Python37.zip)
+- [MacOS (Xcode 11, Python 3.7)](https://github.com/materialx/MaterialX/releases/latest/download/MaterialX_MacOS_Xcode_11_Python37.zip)
+- [Linux (GCC 10, Python 3.7)](https://github.com/materialx/MaterialX/releases/latest/download/MaterialX_Linux_GCC_10_Python37.zip)
 
-The following dependencies are optional:
+### Additional Resources
 
- - [OpenEXR](http://www.openexr.com)
- - [OpenImageIO](https://sites.google.com/site/openimageio/home)
- - [OpenColorIO](http://opencolorio.org/)
- - [OSL (OpenShadingLanguage)](https://github.com/imageworks/OpenShadingLanguage)
- - [Ptex](http://ptex.us/)                          
-
-**usdview**
-
-The following dependencies are required:
-
- - [PySide](http://wiki.qt.io/PySide) or [PySide2](http://wiki.qt.io/PySide2)
- - [PyOpenGL](https://pypi.python.org/pypi/PyOpenGL/)
-
-Getting and Building the Code
------------------------------
-
-The simplest way to build USD is to run the supplied ```build_usd.py``` 
-script. This script will download required dependencies and build 
-and install them along with USD in a given directory. 
-
-Follow the instructions below to run the script with its default behavior, 
-which will build the USD core libraries, Imaging, and USD Imaging components.
-For more options and documentation, run the script with the ```--help```
-parameter.
-
-See [Advanced Build Configuration](BUILDING.md) for examples and
-additional documentation for running cmake directly.
-
-#### 1. Install prerequisites (see [Dependencies](#dependencies) for required versions)
-
-- Required:
-    - C++ compiler:
-        - gcc
-        - Xcode
-        - Microsoft Visual Studio
-    - NASM (required for Imaging on Windows)
-    - CMake
-- Optional (Can be ignored by passing `--no-python` as an argument to `build_usd.py`)
-    - Python (required for [bindings and tests](BUILDING.md#python)) 
-    - PyOpenGL (required for [usdview](BUILDING.md#usd-imaging))
-    - PySide or PySide2 (required for [usdview](BUILDING.md#usd-imaging))
-
-#### 2. Download the USD source code
-
-You can download source code archives from [GitHub](https://www.github.com/PixarAnimationStudios/USD) or use ```git``` to clone the repository.
-
-```
-> git clone https://github.com/PixarAnimationStudios/USD
-Cloning into 'USD'...
-```
-
-#### 3. Run the script
-
-##### Linux:
-
-For example, the following will download, build, and install USD's dependencies,
-then build and install USD into ```/usr/local/USD```.
-
-```
-> python USD/build_scripts/build_usd.py /usr/local/USD
-```
-
-##### MacOS:
-
-In a terminal, run ```xcode-select``` to ensure command line developer tools are 
-installed. Then run the script.
-
-For example, the following will download, build, and install USD's dependencies,
-then build and install USD into ```/opt/local/USD```.
-
-```
-> python USD/build_scripts/build_usd.py /opt/local/USD
-```
-
-##### Windows:
-
-Launch the "x64 Native Tools Command Prompt" for your version of Visual Studio
-and run the script in the opened shell. Make sure to use the 64-bit (x64) 
-command prompt and not the 32-bit (x86) command prompt.
-
-See https://docs.microsoft.com/en-us/cpp/build/how-to-enable-a-64-bit-visual-cpp-toolset-on-the-command-line for more details.
-
-For example, the following will download, build, and install USD's dependencies,
-then build and install USD into ```C:\Program Files\USD```.
-
-```
-C:\> python USD\build_scripts\build_usd.py "C:\Program Files\USD"
-```
-
-#### 4. Try it out
-
-Set the environment variables specified by the script when it finishes and 
-launch ```usdview``` with a sample asset.
-
-```
-> usdview USD/extras/usd/tutorials/convertingLayerFormats/Sphere.usda
-```
-
-Contributing
-------------
-
-If you'd like to contribute to USD (and we appreciate the help!), please see
-the [Contributing](http://openusd.org/docs/Contributing-to-USD.html) page in the
-documentation for more information.
+- The [Developer Guide](http://www.materialx.org/docs/api/index.html) contains a developer-oriented overview of MaterialX with API documentation.
+- The [Python Scripts](python/Scripts) folder contains standalone examples of MaterialX Python code.
+- Presentations at the [Physically Based Shading Course](https://blog.selfshadow.com/publications/s2020-shading-course/#materialx) and [MaterialX Birds of a Feather](http://www.materialx.org/assets/MaterialX_Sig2020_BOF_slides.pdf) provide details on the roadmap for MaterialX development.

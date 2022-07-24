@@ -2,3 +2,15 @@
 .DS_Store
 .AppleDouble
 
+share
+mdl
+plugin
+resources
+doc
+bin
+lib
+include
+libraries
+build_scripts/Files/
+*.exe
+*.dll

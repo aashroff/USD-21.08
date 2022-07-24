@@ -34,7 +34,6 @@
 #include "pxr/imaging/hdSt/resourceRegistry.h"
 #include "pxr/imaging/hd/renderDelegate.h"
 #include "pxr/imaging/hd/vtBufferSource.h"
-#include "pxr/imaging/glf/contextCaps.h"
 #include "pxr/base/tf/staticTokens.h"
 
 PXR_NAMESPACE_OPEN_SCOPE
@@ -351,15 +350,14 @@ _ComputePoints(const GfBBox3d &bbox)
 void
 HdSt_VolumeShader::AddResourcesFromTextures(ResourceContext &ctx) const
 {
-    const bool bindlessTextureEnabled
-        = GlfContextCaps::GetInstance().bindlessTextureEnabled;
+
 
     HdBufferSourceSharedPtrVector shaderBarSources;
 
     // Fills in sampling transforms for textures and also texture
     // handles for bindless textures.
     HdSt_TextureBinder::ComputeBufferSources(
-        GetNamedTextureHandles(), bindlessTextureEnabled, &shaderBarSources);
+        GetNamedTextureHandles(), &shaderBarSources);
 
     if (_fillsPointsBar) {
         // Compute volume bounding box from field bounding boxes
@@ -408,8 +406,7 @@ HdSt_VolumeShader::UpdateTextureHandles(
         return;
     }
 
-    const bool bindlessTextureEnabled
-        = GlfContextCaps::GetInstance().bindlessTextureEnabled;
+
 
     // Walk through the vector of named texture handles and field descriptors
     // simultaneously.
@@ -443,7 +440,6 @@ HdSt_VolumeShader::UpdateTextureHandles(
                 textureType,
                 samplerParams,
                 textureMemory,
-                bindlessTextureEnabled,
                 shared_from_this());
     }
 
