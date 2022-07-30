@@ -5,6 +5,7 @@
         "xstring": "cpp",
         "memory": "cpp",
         "functional": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "vector": "cpp"
     }
 }

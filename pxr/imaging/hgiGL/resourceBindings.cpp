@@ -87,10 +87,7 @@ HgiGLResourceBindings::BindResources()
             HgiSamplerHandle const& smpHandle = texDesc.samplers.front();
             HgiGLSampler* glSmp = static_cast<HgiGLSampler*>(smpHandle.Get());
             samplers[texDesc.bindingIndex] = glSmp->GetSamplerId();
-        } else {
-            // A sampler MUST be provided for sampler image textures (Hgi rule).
-            TF_VERIFY(texDesc.resourceType != HgiBindResourceTypeSampledImage);
-        }
+        } 
     }
 
     if (hasTex) {
